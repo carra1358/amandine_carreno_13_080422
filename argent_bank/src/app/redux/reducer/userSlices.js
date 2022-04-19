@@ -6,14 +6,8 @@ const userSlices = createSlice({
     name: "user",
     initialState:{
         isLogin : false,
-        userAuth: {
-            "status": null,
-            "message": "",
-            "body": {
-              "token": ""
-            }
-          },
-          userData: {}
+        userAuth: {},
+        userData: {}
         
     },
     
@@ -29,11 +23,7 @@ const userSlices = createSlice({
         state.isLogin = false
         state.userData = {}
         state.userAuth = {
-            "status": null,
-            "message": "",
-            "body": {
-              "token": ""
-            }
+            
           }
      
     }
