@@ -1,11 +1,12 @@
 import propTypes from "prop-types"
+import EditName from "../EditName";
 
 function Greetings({name}) {
     return(
         <div className="main bg-dark">
         <div className="header">
         <h1>Welcome back<br />{name}!</h1>
-         <button type="button" className="edit-button">Edit Name</button>
+        <EditName/>
         </div>
         </div>
     )

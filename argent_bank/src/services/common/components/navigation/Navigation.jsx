@@ -4,7 +4,11 @@ import { FaUserCircle} from "react-icons/fa"
 import {MdLogout} from "react-icons/md"
 import "./navigation.scss"
 
+
+
 function Navigation ({image,legend,path,className}) {
+
+
   return(
     <div>
         {
@@ -30,7 +34,7 @@ Navigation.defaultProps = {
   image: "",
   legend: "",
   path: "",
-  className: ""
+  className: "",
 }
 
 Navigation.propTypes = {
