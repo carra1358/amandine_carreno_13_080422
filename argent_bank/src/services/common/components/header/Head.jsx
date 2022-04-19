@@ -1,4 +1,3 @@
-import propTypes from "prop-types";
 import { useSelector, useDispatch } from "react-redux";
 import { userLogoutAction } from "app/redux/reducer/userSlices";
 import "./head.scss"
@@ -9,21 +8,22 @@ import  Navigation  from "../navigation/Navigation";
 
 
 
-function Head ({mode}){
+function Head (){
 const userName = useSelector(state => state.user.userData.firstName)
+const userLogInSelector = useSelector(state => state.user.isLogin)
 const dispatch = useDispatch();
 const handleLogout = () => {
 dispatch(userLogoutAction())
 }
 
-  return( mode === "userLogin" ?
+  return( userLogInSelector ?
         <div  className="main-nav">
           
            <div className="main-nav-logo">
              <img src={logoBank} alt=""/>
              </div>
              <nav className="main-nav-login">
-             <Navigation legend={userName} path="/login" className="main-nav-item" />
+             <Navigation legend={userName} path="/profile" className="main-nav-item" />
              {/* eslint-disable */}
              <button type="button"  onClick={handleLogout} id="button_logout"><Navigation legend="Sign Out" path="/" className="main-nav-item"/></button>
              </nav> 
@@ -39,13 +39,7 @@ dispatch(userLogoutAction())
   )
 }
 
-Head.defaultProps = {
-  mode: "userLogout"
-}
 
-Head.propTypes = {
-  mode: propTypes.string
-}
 
 
 export default Head;
