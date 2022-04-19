@@ -13,7 +13,7 @@ function Greetings({name}) {
 }
 
 Greetings.defaultProps = {
-    name : "Amandine"
+    name : ""
 }
 
 Greetings.propTypes = {

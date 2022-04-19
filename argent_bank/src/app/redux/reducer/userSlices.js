@@ -7,7 +7,12 @@ const userSlices = createSlice({
     initialState:{
         isLogin : false,
         userAuth: {},
-        userData: {}
+        userData: {
+              email: null,
+              firstName: null,
+              lastName: null,
+              id: null,
+        }
         
     },
     
@@ -19,9 +24,20 @@ const userSlices = createSlice({
     userDataAction : (state, action) => {
      state.userData = action.payload
     },
+    userEditFirstName : (state,action) => {
+        state.userData.firstName = action.payload
+    }, userEditLastName : (state,action) => {
+        state.userData.lastName = action.payload
+    },
     userLogoutAction : (state) => {
         state.isLogin = false
-        state.userData = {}
+        state.userData = {
+            email: null,
+            firstName: null,
+            lastName: null,
+            id: null,
+
+        }
         state.userAuth = {
             
           }
