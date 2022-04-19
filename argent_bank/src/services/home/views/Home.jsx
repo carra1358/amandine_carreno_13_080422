@@ -11,7 +11,7 @@ import "./home.scss"
 function Home (){
     return(
         <div>
-           <Head mode="userLogout"/>
+           <Head/>
            <div className="hero">
           <section className="hero-content">
           <h2 className="sr-only">Promoted Content</h2>
