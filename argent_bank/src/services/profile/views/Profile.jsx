@@ -1,12 +1,13 @@
-
 import { useSelector, useDispatch } from "react-redux";
 import axios from "app/api/axios";
 import { useEffect } from "react";
 import { createBrowserHistory } from "history";
 import { userDataAction} from "app/redux/reducer/userSlices";
+import transactionData  from "app/MOOK/transactionData";
 import Footer from "services/common/components/footer/Footer";
 import Head from "services/common/components/header/Head";
 import Greetings from "../components/greetings/Greetings";
+ import CardAccount from "../components/card_account.jsx/CardAccount";
 
 
 
@@ -59,7 +60,16 @@ function Profile (){
     return (
         <div>
            <Head />
+           <div className="main bg-dark">
            <Greetings name={userName}/>
+           
+           <h2 className="sr-only">Accounts</h2>
+           {transactionData.map(account => {
+               
+            return  transactionData? <CardAccount key={account.id} type={account.type} balance={account.balance} id={account.id}/>: ""
+            
+           })}
+           </div>
            <Footer/>
         </div>
     )

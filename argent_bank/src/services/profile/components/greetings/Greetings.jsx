@@ -3,7 +3,7 @@ import EditName from "../EditName";
 
 function Greetings({name}) {
     return(
-        <div className="main bg-dark">
+        <div >
         <div className="header">
         <h1>Welcome back<br />{name}!</h1>
         <EditName/>
