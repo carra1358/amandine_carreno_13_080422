@@ -10,7 +10,7 @@ function Navigation ({image,legend,path,className}) {
 
 
   return(
-    <div>
+    <div className="navigation-container">
         {
             image ?
             <Link to={path} className={className}>

@@ -12,7 +12,8 @@ const userSlices = createSlice({
               firstName: null,
               lastName: null,
               id: null,
-        }
+        },
+        userPath: null
         
     },
     
@@ -42,11 +43,14 @@ const userSlices = createSlice({
             
           }
      
+    },
+    userPathAction : (state,action) => {
+       state.userPath = action.payload
     }
      
     }
     
 })
 
-export const { userLogInAction, userDataAction, userLogoutAction} = userSlices.actions;
+export const { userLogInAction, userDataAction, userLogoutAction, userPathAction} = userSlices.actions;
 export default userSlices.reducer;

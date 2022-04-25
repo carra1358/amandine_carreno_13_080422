@@ -3,6 +3,7 @@ import  Head from "services/common/components/header/Head";
 import chat from "../../../assets/icon/icon-chat.png"
 import money from "../../../assets/icon/icon-money.png"
 import security from "../../../assets/icon/icon-security.png"
+import Feature from "../components/Feature";
 import "./home.scss"
 
 
@@ -23,37 +24,10 @@ function Home (){
       </div>
       <section className="features">
         <h2 className="sr-only">Features</h2>
-        <div className="feature-item">
-          <img src={chat} alt="Chat Icon" className="feature-icon" />
-          <h3 className="feature-item-title">You are our #1 priority</h3>
-          <p>
-            Need to talk to a representative? You can get in touch through our
-            24/7 chat or through a phone call in less than 5 minutes.
-          </p>
-        </div>
-        <div className="feature-item">
-          <img
-            src={money}
-            alt="Chat Icon"
-            className="feature-icon"
-          />
-          <h3 className="feature-item-title">More savings means higher rates</h3>
-          <p>
-            The more you save with us, the higher your interest rate will be!
-          </p>
-        </div>
-        <div className="feature-item">
-          <img
-            src={security}
-            alt="Chat Icon"
-            className="feature-icon"
-          />
-          <h3 className="feature-item-title">Security you can trust</h3>
-          <p>
-            We use top of the line encryption to make sure your data and money
-            is always safe.
-          </p>
-        </div>
+        <Feature src={chat} title="You are our #1 priority" content=" Need to talk to a representative? You can get in touch through our
+            24/7 chat or through a phone call in less than 5 minutes."/>
+        <Feature src={money} title="More savings means higher rates" content="The more you save with us, the higher your interest rate will be!"/>
+        <Feature src={security} title="Security you can trust" content="We use top of the line encryption to make sure your data and money is always safe." />
       </section>
       <Footer/>
         </div>

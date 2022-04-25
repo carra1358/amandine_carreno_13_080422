@@ -1,0 +1,80 @@
+.container-Transaction{
+    width: 100%;
+    padding: 5% 0 1% 0;
+    display: flex;
+    justify-content: center;
+    font-size: 1.2em;
+    color: #FFFF;
+
+    svg{
+        font-size: 1.9em;
+    }
+
+    
+}
+
+.table-header{
+    text-transform: uppercase;
+     
+    
+}
+
+
+
+.toogle-transaction{
+
+    border-bottom: 1px solid #12002b;
+}
+
+.cell-transaction{
+    margin: 0;
+    border-bottom: 1px solid #12002b;
+    text-align: center;  
+}
+
+tbody{
+    background-color: #FFFF;
+    border: 1px solid #12002b;
+    color: #12002b;
+    
+}
+
+.Table-Transaction{
+    width: 90%;
+    border-collapse:collapse;
+    font-weight: bolder;
+
+    p{
+        margin: 0;
+        
+    }
+    td{
+        ul{
+          display: flex;
+          flex-direction: column;
+          justify-content: flex-start;
+          align-items:flex-start;
+          padding: 0;
+          margin: 0 0 0 15%;
+
+          li{
+              svg{
+                  font-size: 1em;
+              }
+              list-style: none;
+              text-transform: capitalize;
+              padding: 0.7em 0 0.7em 0 ;
+
+              input{
+                color: #12002b;
+                text-transform: capitalize;
+                font-family: Avenir,Arial, Helvetica, sans-serif;
+                border: none;
+                font-size: 1.1em;
+              }
+          }
+          
+
+        }
+    }
+}

@@ -2,6 +2,7 @@ import { useState } from "react";
 import axios from "app/api/axios";
 import { useDispatch, useSelector } from "react-redux";
 import { userDataAction } from "app/redux/reducer/userSlices";
+import "./greetings.scss"
 
 
 function EditName (){
@@ -63,30 +64,40 @@ function EditName (){
     }
 
   return(
-     <div>
+     <div className="header">
          {isOpen?
+         <>
+          <h1>Welcome back</h1>
             <form onSubmit={handleEditNames}>
-          <div >
+          <div className="greetings-input-container">
             <label htmlFor="firstname">
                 <input type="text" id="firstname" value={firstName || ""} placeholder={firstNameSelector} onChange={(e) => setFirstName(e.target.value)}/>
             </label>
            
-          </div>
-          <div >
             <label htmlFor="latname">
                 <input type="text" id="lastname" value={lastName || ""} placeholder={lastNameSelector} onChange={(e) => setLastName(e.target.value)}/>
             </label>
           </div>
           
-         <button type="submit" className="edit-button">Save</button> <button type="button" onClick={()=>{SetIsOpen(false)}} className="edit-button">Cancel</button> 
+           <div className="greetings-button-container">
+           <div className="greetings-button">
+         <button type="submit" className="edit-button">Save</button>
+         </div>
+         <div className="greetings-button">
+          <button type="button" onClick={()=>{SetIsOpen(false)}} className="edit-button">Cancel</button> 
+         </div>
+           </div>
         
         </form>
-
+        </>
      
-    : <button type="button" className="edit-button" onClick={()=>{SetIsOpen(true);setFirstName(null);
-        setLastName(null)}}>Edit Name</button>}
+    :
+     <>
+     <h1>Welcome back<br />{firstNameSelector} {lastNameSelector}!</h1>
+     <button type="button" className="edit-button" onClick={()=>{SetIsOpen(true);setFirstName(null);
+        setLastName(null)}}>Edit Name</button>
+    </>}
+    </div>)}
 
-    </div>)
-}
 
 export default EditName;
