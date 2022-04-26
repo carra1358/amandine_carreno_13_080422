@@ -1,3 +1,4 @@
+@use "./services/common/styles/_variables";
 
 .sign-in-button {
     display: block;
@@ -6,8 +7,9 @@
     font-size: 1.1rem;
     font-weight: bold;
     margin-top: 1rem;
-    border-color: #00bc77;
-    background-color: #00bc77;
+    border: none;
+    border-radius: 5px;
+    background-color: variables.$second-color;
     color: #fff;
   }
   
@@ -21,6 +23,7 @@
   }
   
   .sign-in-icon {
+    color: variables.$third-color;
     font-size: 5rem;
   }
   

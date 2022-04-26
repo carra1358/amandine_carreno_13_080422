@@ -33,7 +33,7 @@ function Profile (){
       })
         
         const url = "user/profile"
-        const token = useSelector(state => state.user.userAuth.body.token)
+        const token = useSelector(state => state.user.userAuth.token)
         const dispatch = useDispatch();
 
 

@@ -1,42 +1,56 @@
-import axios from "app/api/axios"
+// import axios from "app/api/axios"
 import { userLogInAction } from "app/redux/reducer/userSlices";
 import { useState } from "react";
 import { useNavigate } from 'react-router-dom'
 import { useDispatch } from "react-redux";
+import useHttpClient  from "app/hook/useHttpClient";
 
 function Form (){
 
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
-   // const testUsername = useSelector(state => state.login.value);
+    const [error, setError] = useState("")
+
     const dispatch = useDispatch();
     const navigate = useNavigate()
+    const httpClient = useHttpClient();
   
     function LogIn(e) {
           e.preventDefault()
-          const url = "user/login"
-         
+      
+        if(username.trim() === ""){
+            setError("Please fill the username input")
+        }
+        if(password.trim() === ""){
+            setError("Please fill the password input")
+        }
+        const informations = username+password
+        if(informations.trim() === ""){
+          setError("Please inform your informations before log in ")
+      }
+        
             const userLogIn = async () => {
                 
               try{
                   /* eslint-disable */
-                  const reponse = await axios.post(url, JSON.stringify({email : username, password:password }),
-                  {
-                    headers: {"Content-Type": "application/json", "Credential": true}
-                  })
-                
-                dispatch(userLogInAction(reponse.data))
-                
+                  const reponse = await httpClient.login(username,password)
+                 
+                dispatch(userLogInAction(reponse.data.body))
                 if(reponse.status === 200){
                     navigate("/profile")
                 }
                return reponse
               }catch (error){
+                
+                setError("Access denied: Please verified your username and password.")
+              
               return error
               }
                
             };
-            userLogIn();
+            if(username && password){
+                userLogIn()
+            }
         }
     
     
@@ -66,6 +80,7 @@ function Form (){
           </div>
          <button type="submit" className="sign-in-button">Sign In</button> 
         </form>
+        <p>{error}</p>
         </div>
     )
 }

@@ -6,7 +6,9 @@ const userSlices = createSlice({
     name: "user",
     initialState:{
         isLogin : false,
-        userAuth: {},
+        userAuth: {
+            token: null
+        },
         userData: {
               email: null,
               firstName: null,
@@ -40,7 +42,7 @@ const userSlices = createSlice({
 
         }
         state.userAuth = {
-            
+            token: null
           }
      
     },

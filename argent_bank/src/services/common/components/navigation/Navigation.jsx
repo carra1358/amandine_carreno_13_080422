@@ -21,7 +21,7 @@ function Navigation ({image,legend,path,className}) {
           :
            
            <Link to={path} className={className}>
-              {path === "/"? <MdLogout/> : <FaUserCircle/>}
+              {path === "/"? <MdLogout/> : <FaUserCircle className="icon-user"/>}
               <span>{legend}</span>
              </Link>   
           

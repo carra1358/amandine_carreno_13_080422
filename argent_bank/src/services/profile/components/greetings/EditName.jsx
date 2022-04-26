@@ -3,14 +3,16 @@ import axios from "app/api/axios";
 import { useDispatch, useSelector } from "react-redux";
 import { userDataAction } from "app/redux/reducer/userSlices";
 import "./greetings.scss"
+import useHttpClient from "app/hook/useHttpClient";
+
 
 
 function EditName (){
+    const httpClient = useHttpClient()
     const [isOpen, SetIsOpen] = useState(false);
     const [firstName, setFirstName] = useState();
     const [lastName, setLastName] = useState();
-    const url = "user/profile";
-    const token = useSelector(state => state.user.userAuth.body.token);
+    const token = useSelector(state => state.user.userAuth.token);
     const firstNameSelector = useSelector(state => state.user.userData.firstName);
     const lastNameSelector = useSelector(state => state.user.userData.lastName);
     const dispatch = useDispatch()
@@ -29,9 +31,7 @@ function EditName (){
 
         try{
             /* eslint-disable */
-            const reponse = await axios.put(url,{firstName : newFirstName, lastName: newLastName },
-                {headers : {"Authorization": "Bearer" + token}})
-         
+            const reponse = await httpClient.editName(newFirstName,newLastName)
          return reponse
         }catch (error){
             console.log(error)
@@ -47,7 +47,7 @@ function EditName (){
              
         try{
             /* eslint-disable */
-            const reponse = await axios.post(url,{token},
+            const reponse = await axios.post("user/profile",{token},
                 {headers : {"Authorization": "Bearer" + token}})
             
          
@@ -94,7 +94,7 @@ function EditName (){
     :
      <>
      <h1>Welcome back<br />{firstNameSelector} {lastNameSelector}!</h1>
-     <button type="button" className="edit-button" onClick={()=>{SetIsOpen(true);setFirstName(null);
+     <button type="button" className="edit-button-close" onClick={()=>{SetIsOpen(true);setFirstName(null);
         setLastName(null)}}>Edit Name</button>
     </>}
     </div>)}

@@ -49,8 +49,9 @@ function TabTransaction ({data,balance}){
                         <td className="cell-transaction-open">{new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'USD' }).format(amount)}</td>
                         <td className="cell-transaction-open">{new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'USD' }).format(getBalance(i,amountsArray,balance))}</td>
                          </tr>
-                         <tr> 
-                           <td colSpan="5">
+                         <tr>
+                           <td></td>
+                           <td colSpan="4">
                            <ul>
                              <li>
                                 Transaction Type : {operation.operationType}
