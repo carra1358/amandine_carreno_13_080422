@@ -1,19 +1,17 @@
-import { userPathAction } from "app/redux/reducer/userSlices"
+import { findAccountAction } from "app/redux/reducer/userSlices"
 import propTypes  from "prop-types"
 import { useDispatch } from "react-redux"
-
-import { Link, useLocation } from "react-router-dom"
+import { Link} from "react-router-dom"
 import "./card_account.scss"
 
 function CardAccount ({type,balance,id,className}){
-
-   const dispatch = useDispatch()
-   const location = useLocation()
   
+    const dispatch = useDispatch()
     const handleUserPath = () => {
       const  path = id;
-     dispatch(userPathAction(path)) 
+     dispatch(findAccountAction(path)) 
     }
+ 
 
     return(
         <section className={className}>
@@ -23,7 +21,7 @@ function CardAccount ({type,balance,id,className}){
           <p className="account-amount-description">Available Balance</p>
         </div>
         {
-           location.pathname === "/profile" ? 
+           className === "account" ? 
            <div className="account-content-wrapper cta">
            <Link to="/transaction" onClick={handleUserPath}><button type="button" className="transaction-button">View transactions</button></Link> 
           </div> :

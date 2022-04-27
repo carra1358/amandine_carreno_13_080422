@@ -1,58 +1,59 @@
-import {createSlice } from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit'
 
-/* eslint no-param-reassign: ["error", { "props": false }] */
 
+// redux slice: englobe innitial state and reducers and generate actions automatically
 const userSlices = createSlice({
+
     name: "user",
-    initialState:{
-        isLogin : false,
+
+    initialState: {
+        isLogin: false,
         userAuth: {
             token: null
         },
         userData: {
-              email: null,
-              firstName: null,
-              lastName: null,
-              id: null,
-        },
-        userPath: null
-        
-    },
-    
-    reducers:{
-    userLogInAction: (state,action) => {
-     state.userAuth = action.payload
-     state.isLogin = true 
-    },
-    userDataAction : (state, action) => {
-     state.userData = action.payload
-    },
-    userEditFirstName : (state,action) => {
-        state.userData.firstName = action.payload
-    }, userEditLastName : (state,action) => {
-        state.userData.lastName = action.payload
-    },
-    userLogoutAction : (state) => {
-        state.isLogin = false
-        state.userData = {
             email: null,
             firstName: null,
             lastName: null,
             id: null,
+        },
+        userPath: null
 
-        }
-        state.userAuth = {
-            token: null
-          }
-     
     },
-    userPathAction : (state,action) => {
-       state.userPath = action.payload
+
+    reducers: {
+
+        // Updates user authorisation and status
+        userLogInAction: (state, action) => {
+            state.userAuth = action.payload
+            state.isLogin = true
+        },
+        // Updates user informations
+        userDataAction: (state, action) => {
+            state.userData = action.payload
+        },
+        // Clear user returns initial state
+        userLogoutAction: (state) => {
+            state.isLogin = false
+            state.userData = {
+                email: null,
+                firstName: null,
+                lastName: null,
+                id: null,
+
+            }
+            state.userAuth = {
+                token: null
+            }
+        },
+        // store and updates account id from mooked data to find data to load for each account created
+        findAccountAction: (state, action) => {
+            state.userPath = action.payload
+        }
+
     }
-     
-    }
-    
+
 })
 
-export const { userLogInAction, userDataAction, userLogoutAction, userPathAction} = userSlices.actions;
+export const { userLogInAction, userDataAction, userLogoutAction, findAccountAction } = userSlices.actions;
 export default userSlices.reducer;

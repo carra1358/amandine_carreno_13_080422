@@ -7,6 +7,7 @@ import CardAccount from "services/profile/components/card_account.jsx/CardAccoun
 import TabTransaction from "./components/TabTransaction";
 import "./transaction.scss"
 
+// Component rendering Transation page for each user account
 function Transaction (){
 
   const  userPathSelector = useSelector(state => state.user.userPath)

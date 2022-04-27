@@ -6,6 +6,10 @@ form{
     justify-content: center;
     align-items: center;
 }
+
+.greetings-name{
+    text-transform: capitalize;
+}
 .greetings-input-container{
     display: flex;
     justify-content: center;

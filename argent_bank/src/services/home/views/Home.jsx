@@ -8,7 +8,7 @@ import "./home.scss"
 
 
 
-
+// component rendering Home page
 function Home (){
     return(
         <div>

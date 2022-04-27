@@ -1,21 +1,29 @@
 import { useState } from "react";
-import axios from "app/api/axios";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { userDataAction } from "app/redux/reducer/userSlices";
 import "./greetings.scss"
 import useHttpClient from "app/hook/useHttpClient";
 
 
-
+// Component that renders and updates user name
 function EditName (){
+
     const httpClient = useHttpClient()
     const [isOpen, SetIsOpen] = useState(false);
     const [firstName, setFirstName] = useState();
     const [lastName, setLastName] = useState();
-    const token = useSelector(state => state.user.userAuth.token);
     const firstNameSelector = useSelector(state => state.user.userData.firstName);
     const lastNameSelector = useSelector(state => state.user.userData.lastName);
     const dispatch = useDispatch()
+    
+    /**
+     * function called on click on save button
+     * recover firstname and lastname input
+     * call request to send new information
+     * * call request to widthdraw information updated in the data base
+     * clears inputs
+     * @param {*} e 
+     */
     const handleEditNames = (e) => {
        e.preventDefault();
    
@@ -30,11 +38,15 @@ function EditName (){
            }
 
         try{
-            /* eslint-disable */
-            const reponse = await httpClient.editName(newFirstName,newLastName)
+          
+              const reponse = await httpClient.editName(newFirstName,newLastName)
+            if(reponse.status(200)){
+              const res = await httpClient.accessData("user/profile")  
+              return   dispatch(userDataAction(res.data.body))      
+            }  
          return reponse
         }catch (error){
-            console.log(error)
+          
         return error
         }
          
@@ -43,25 +55,9 @@ function EditName (){
        SetIsOpen(false)
        setFirstName("")
        setLastName("")
-       const userAuth = async () => {
-             
-        try{
-            /* eslint-disable */
-            const reponse = await axios.post("user/profile",{token},
-                {headers : {"Authorization": "Bearer" + token}})
-            
-         
-          dispatch(userDataAction(reponse.data.body))
-          
-         return reponse
-        }catch (error){
-            console.log(error)
-        return error
-        }
-         
-      };
-      userAuth();
+      
     }
+ 
 
   return(
      <div className="header">
@@ -93,7 +89,7 @@ function EditName (){
      
     :
      <>
-     <h1>Welcome back<br />{firstNameSelector} {lastNameSelector}!</h1>
+     <h1>Welcome back<br /><span className="greetings-name">{firstNameSelector}</span> <span className="greetings-name">{lastNameSelector}</span>!</h1>
      <button type="button" className="edit-button-close" onClick={()=>{SetIsOpen(true);setFirstName(null);
         setLastName(null)}}>Edit Name</button>
     </>}

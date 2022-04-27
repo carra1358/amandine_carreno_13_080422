@@ -1,11 +1,9 @@
 import propTypes from "prop-types"
 
-function Feature ({src,title,content}){
-   
-  
-   
-    
 
+// component rendering bank's features
+function Feature ({src,title,content}){
+  
     return(
         <div className="feature-item">
           <img src={src} alt="" className="feature-icon" />

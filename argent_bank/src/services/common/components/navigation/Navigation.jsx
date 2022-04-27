@@ -5,7 +5,14 @@ import {MdLogout} from "react-icons/md"
 import "./navigation.scss"
 
 
-
+/**
+ * Component that rendering navigation link
+ * @param {string} image path to picture we want to use(if any)
+ * @param {string} legend text content of the Link component
+ * @param {string}  path path to the new page
+ * @param  {string} className of the Link component
+ * @returns 
+ */
 function Navigation ({image,legend,path,className}) {
 
 

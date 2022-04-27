@@ -1,20 +1,26 @@
-// import axios from "app/api/axios"
+
 import { userLogInAction } from "app/redux/reducer/userSlices";
 import { useState } from "react";
-import { useNavigate } from 'react-router-dom'
 import { useDispatch } from "react-redux";
 import useHttpClient  from "app/hook/useHttpClient";
+import "./form.scss"
 
+// alloweds the user to connected
 function Form (){
 
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
-    const [error, setError] = useState("")
-
+    const [errors, setError] = useState("")
     const dispatch = useDispatch();
-    const navigate = useNavigate()
     const httpClient = useHttpClient();
   
+    /**
+     * function that handle the submition of user login informations
+     * verifies user entries
+     * updates user authorization status
+     * @param {*} e submit event
+     * @returns {string} token received form the call || null
+     */
     function LogIn(e) {
           e.preventDefault()
       
@@ -32,14 +38,9 @@ function Form (){
             const userLogIn = async () => {
                 
               try{
-                  /* eslint-disable */
+                
                   const reponse = await httpClient.login(username,password)
-                 
-                dispatch(userLogInAction(reponse.data.body))
-                if(reponse.status === 200){
-                    navigate("/profile")
-                }
-               return reponse
+                  return dispatch(userLogInAction(reponse.data.body))
               }catch (error){
                 
                 setError("Access denied: Please verified your username and password.")
@@ -80,7 +81,7 @@ function Form (){
           </div>
          <button type="submit" className="sign-in-button">Sign In</button> 
         </form>
-        <p>{error}</p>
+        <p>{errors}</p>
         </div>
     )
 }

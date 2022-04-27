@@ -4,6 +4,7 @@ import Head from "services/common/components/header/Head";
 import { FaUserCircle} from "react-icons/fa"
 import Form from "../components/form/Form";
 
+// Component rendering Login Page 
 function Login (){
 return (
     <div>
@@ -16,7 +17,6 @@ return (
       
       </section>
     </main>
-        
         <Footer/>
     </div>
 )
