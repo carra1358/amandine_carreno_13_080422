@@ -24,8 +24,7 @@ dispatch(userLogoutAction())
              </div>
              <nav className="main-nav-login">
              <Navigation legend={userName} path="/profile" className="main-nav-item" />
-             {/* eslint-disable */}
-             <button type="button"  onClick={handleLogout} id="button_logout"><Navigation legend="Sign Out" path="/" className="main-nav-item"/></button>
+             <button type="button" aria-label="sign out" onClick={handleLogout} id="button_logout"><Navigation legend="Sign Out" path="/" className="main-nav-item"/></button>
              </nav> 
                    
         </div>

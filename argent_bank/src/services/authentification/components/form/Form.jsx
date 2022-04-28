@@ -1,42 +1,57 @@
-import axios from "app/api/axios"
+
 import { userLogInAction } from "app/redux/reducer/userSlices";
 import { useState } from "react";
-import { useNavigate } from 'react-router-dom'
 import { useDispatch } from "react-redux";
+import useHttpClient  from "app/hook/useHttpClient";
+import "./form.scss"
 
+// alloweds the user to connected
 function Form (){
 
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
-   // const testUsername = useSelector(state => state.login.value);
+    const [errors, setError] = useState("")
     const dispatch = useDispatch();
-    const navigate = useNavigate()
+    const httpClient = useHttpClient();
   
+    /**
+     * function that handle the submition of user login informations
+     * verifies user entries
+     * updates user authorization status
+     * @param {*} e submit event
+     * @returns {string} token received form the call || null
+     */
     function LogIn(e) {
           e.preventDefault()
-          const url = "user/login"
-         
+      
+        if(username.trim() === ""){
+            setError("Please fill the username input")
+        }
+        if(password.trim() === ""){
+            setError("Please fill the password input")
+        }
+        const informations = username+password
+        if(informations.trim() === ""){
+          setError("Please inform your informations before log in ")
+      }
+        
             const userLogIn = async () => {
                 
               try{
-                  /* eslint-disable */
-                  const reponse = await axios.post(url, JSON.stringify({email : username, password:password }),
-                  {
-                    headers: {"Content-Type": "application/json", "Credential": true}
-                  })
                 
-                dispatch(userLogInAction(reponse.data))
-                
-                if(reponse.status === 200){
-                    navigate("/profile")
-                }
-               return reponse
+                  const reponse = await httpClient.login(username,password)
+                  return dispatch(userLogInAction(reponse.data.body))
               }catch (error){
+                
+                setError("Access denied: Please verified your username and password.")
+              
               return error
               }
                
             };
-            userLogIn();
+            if(username && password){
+                userLogIn()
+            }
         }
     
     
@@ -66,6 +81,7 @@ function Form (){
           </div>
          <button type="submit" className="sign-in-button">Sign In</button> 
         </form>
+        <p>{errors}</p>
         </div>
     )
 }

@@ -1,8 +1,10 @@
+@use "./services/common/styles/_variables";
+
 .main-nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 5px 20px;
+    padding: 10px 20px;
 
   
   }
@@ -14,6 +16,8 @@
     img{
         max-width: 100%;
         width: 200px;
+        border-radius: 5px;
+        box-shadow: 1px 1px 3px  variables.$main-color;
     }
   }
   
@@ -26,4 +30,19 @@
 #button_logout{
   border: none;
   background-color: transparent;
+}
+
+@media (max-width: 720px) {
+  .main-nav{
+    align-items: flex-start;
+  }
+  .main-nav-logo {
+    img{
+        width: 150px;
+    }
+  }
+  .main-nav-login{
+    display: flex;
+    flex-direction: column;
+}
 }

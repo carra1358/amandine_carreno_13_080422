@@ -1,3 +1,5 @@
+@use "./services/common/styles/_variables";
+
 a {
     font-weight: bold;
     color: #2c3e50;
@@ -5,14 +7,32 @@ a {
   .main-nav-item {
     text-decoration: none;
     margin-right: 0.5rem;
+    text-transform: capitalize;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   svg{
+     margin-right: 5px ;
+   }
   }
+  
   
   .main-nav-item:hover {
     text-decoration: underline;
   }
 
-  .main_nav_login{
-      display: flex;
-      
+  .icon-user{
+    color: variables.$third-color;
   }
+
   
+  
+@media (max-width: 720px) {
+  
+  a {
+    font-size: 1.2em;
+  }
+  .main-nav-item {
+    margin: 0 0 0.7em 0;
+  }
+}

@@ -1,0 +1,97 @@
+@use "./services/common/styles/_variables";
+
+form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.greetings-name{
+    text-transform: capitalize;
+}
+.greetings-input-container{
+    display: flex;
+    justify-content: center;
+    width: 50%;
+   
+    
+}
+
+.greetings-button-container{
+    display: flex;
+    width: 40%;
+
+    :nth-child(1){
+        display: flex;
+        justify-content: flex-end;
+    }
+    
+}
+
+.greetings-button{
+  width: 50%;
+  margin: 0 20px 20px 0 ;
+}
+
+
+#firstname, #lastname {
+    font-size: 1.3em;
+    margin: 0 20px 20px 0 ;
+    padding: 5px;
+    text-transform: capitalize;
+    border: 2px solid variables.$third-color;
+    border-radius: 2px;
+   
+}
+
+input::placeholder{
+    color: #C3CFD9;
+}
+
+.edit-button-close{
+    border: none;
+    color: #FFFF;
+    background-color: variables.$second-color;
+    font-weight: bold;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.edit-button {
+    border:1px solid rgba(100, 88, 245, 0.5);
+    border-radius: 5px;
+    background-color: #FFFF;
+    color: variables.$second-color;
+    font-weight: bold;
+    padding: 10px;
+  }
+  
+  .header {
+    color: variables.$text-color;
+    margin-bottom: 2rem;
+  }
+
+  @media (max-width: 720px) {
+    .greetings-input-container{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .greetings-button-container{
+        display: flex;
+        width: 252px;
+
+        :nth-child(1){
+            justify-content: flex-start;
+        }
+
+        :nth-child(2){
+            display: flex;
+            justify-content: flex-end;
+        }
+    }
+
+ 
+  }
