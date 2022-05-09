@@ -2,7 +2,7 @@
  *  function that return an object centrelazing requests used in the project
  *  take a axios instance as a parameter
  * @param {InstanceType} client
- * @returns {object} api{login,editName,accessData}
+ * @return {object} api{login,editName,accessData}
  */
 const api = (client) => ({
 

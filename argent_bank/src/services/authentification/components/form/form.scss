@@ -29,12 +29,17 @@
   
   .input-remember {
     display: flex;
+    width: 100%;
+    label{
+      input{
+        margin-right: 1.25em;
+        margin-left: 0;
+      }
+    }
+    
   }
   
-  .input-remember label {
-    margin-left: 0.25rem;
-  }
-  
+ 
   .input-wrapper {
     display: flex;
     flex-direction: column;
@@ -42,9 +47,7 @@
     margin-bottom: 1rem;
   }
   
-  .input-wrapper label {
-    font-weight: bold;
-  }
+
   
   .input-wrapper input {
     padding: 5px;

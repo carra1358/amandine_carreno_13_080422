@@ -1,15 +1,16 @@
 import { useSelector } from "react-redux";
 import propTypes from "prop-types"
-import { useLocation,  Navigate } from "react-router-dom";
+import { useLocation, Navigate } from "react-router-dom";
 
 
 
 /**
- * Component that verifies user status and redirect user if connected
+ * Component that verifies user status and redirect user to profile page if connected
  * prevent user to acces login page when already connected
  * @param {node} children component only accessible when user connected
+ * @retrun React.Fc
  */
-function PublicRoutes ({children}){
+function PublicRoutes({ children }) {
   const userLogInSelector = useSelector(state => state.user.isLogin)
   const location = useLocation()
 
@@ -19,10 +20,11 @@ function PublicRoutes ({children}){
       to="/Profile"
       state={{ from: `${location.pathname}${location.search}` }}
     />
-    ): (children)}
+  ) : (children)
+}
 
 export default PublicRoutes;
 
 PublicRoutes.propTypes = {
-    children: propTypes.element.isRequired
-  }
+  children: propTypes.element.isRequired
+}

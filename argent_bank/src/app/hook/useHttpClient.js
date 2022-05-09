@@ -7,7 +7,7 @@ import store from "../redux/store"
 /**
  * Customs hook taking care of client request,listening and updating client authorisation
  * It calls the function api in a object and fill it with request response;
- * @returns {object} request response || null
+ * @return {object} request response || null
  */
 const useHttpClient = () => {
 

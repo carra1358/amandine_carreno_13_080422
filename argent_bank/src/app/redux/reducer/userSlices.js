@@ -32,7 +32,7 @@ const userSlices = createSlice({
         userDataAction: (state, action) => {
             state.userData = action.payload
         },
-        // Clear user returns initial state
+        // Clear user return initial state
         userLogoutAction: (state) => {
             state.isLogin = false
             state.userData = {
