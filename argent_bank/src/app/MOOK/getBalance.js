@@ -4,7 +4,7 @@
  * @param {*} index of the element of the array we want to get the new balance
  * @param {array} array containing all the transactions(here only negatives)
  * @param {number} initialValue initial value of the account
- * @returns {number} new balance available
+ * @return {number} new balance available
  */
 const getBalance = (index, array, initialValue) => {
 
