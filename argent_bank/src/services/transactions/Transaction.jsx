@@ -8,24 +8,24 @@ import TabTransaction from "./components/TabTransaction";
 import "./transaction.scss"
 
 // Component rendering Transation page for each user account
-function Transaction (){
+function Transaction() {
 
-  const  userPathSelector = useSelector(state => state.user.userPath)
+    const userPathSelector = useSelector(state => state.user.userPath)
 
-  const data = transactionData.find(account => account.id === userPathSelector);
-  
-  const i = data.operations.length-1
+    const data = transactionData.find(account => account.id === userPathSelector);
 
-  const array = data.operations.map(op => op.amount)
+    const i = data.operations.length - 1
 
-    return(
+    const array = data.operations.map(op => op.amount)
+
+    return (
         <div>
-            <Head/>
-            <CardAccount className="transaction-account" type={data.type} balance={getBalance(i,array,data.balance)} id={data.id}/>
+            <Head />
+            <CardAccount className="transaction-account" type={data.type} balance={getBalance(i, array, data.balance)} id={data.id} />
             <div className="main bg-dark">
-            <TabTransaction data={data.operations} balance={data.balance} />
+                <TabTransaction data={data.operations} balance={data.balance} />
             </div>
-            <Footer/>
+            <Footer />
         </div>
     )
 }

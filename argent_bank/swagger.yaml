@@ -112,7 +112,7 @@ paths:
           description: Invalid Fields
         '500':
           description: Internal Server Error
-  /user/Accounts:
+  /user/accounts:
     post:
       security:
         - Bearer: []
@@ -155,7 +155,7 @@ paths:
           description: Update user Accounts Transactions attributes
           required: true
           schema:
-            $ref: '#/definitions/UserTransactions'
+            $ref: '#/definitions/UserTransaction'
       produces:
         - application/json
       responses:
@@ -163,6 +163,24 @@ paths:
           description: User Accounts retrieved successully
           schema:
               $ref: '#/definitions/UserAccountsResponse'
+        '400':
+          description: Transactions not founded
+        '500':
+          description: Internal Server Error
+  /user/accounts/{id}/transaction:
+    get:
+      tags:
+        - User Module
+      parameters:
+        - in: path
+          name: id
+          type: integer
+          required: true
+      responses:
+        '200':
+          description: User Accounts retrieved successully
+          schema:
+              $ref: '#/definitions/Transactions'
         '400':
           description: Transactions not founded
         '500':
@@ -221,7 +239,7 @@ definitions:
         type: string
       lastName:
         type: string
-  UserTransactions:
+  UserTransaction:
     type: object
     properties:
       transactionId:
@@ -230,6 +248,23 @@ definitions:
         type: string
       notes:
         type: string
+  Transactions:
+    type: object
+    properties:
+      transactionId:
+        type: string
+      transactionType:
+        type: string
+      description:
+        type: string
+      date:
+        type: string
+      category:
+       type: string
+      notes:
+        type: string
+      amount:
+        type: integer
   UserAccountsResponse:
     type: object
     properties:
@@ -238,30 +273,17 @@ definitions:
       message:
         type: string
       body:
-        type: object
-        properties:
-          accountType:
-            type: string
-          id:
-            type: string
-          userId:
-            type: string
-          balance: 
-            type: number
-          transactions:
+        type: array
+        items:
             type: object
             properties:
-              transactionId:
+              accountType:
                 type: string
-              transactionType:
+              id:
                 type: string
-              description:
+              userId:
                 type: string
-              date:
-                type: string
-              category:
-                type: string
-              notes:
-                type: string
-              amount:
-                type: integer
+              balance: 
+                type: number
+
+          
