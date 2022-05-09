@@ -137,6 +137,7 @@ paths:
           description: Accounts Transactions not founded
         '500':
           description: Internal Server Error
+  /user/accounts/{id}/transactions:
     put:
       security:
         - Bearer: []
@@ -150,6 +151,10 @@ paths:
           description: Attach Bearer JWT token
           required: true
           type: string
+        - in: path
+          name: id
+          type: integer
+          required: true
         - in: body
           name: body
           description: Update user Accounts Transactions attributes
@@ -162,13 +167,14 @@ paths:
         '200':
           description: User Accounts retrieved successully
           schema:
-              $ref: '#/definitions/UserAccountsResponse'
+              $ref: '#/definitions/UserTransaction'
         '400':
           description: Transactions not founded
         '500':
           description: Internal Server Error
-  /user/accounts/{id}/transaction:
     get:
+      security:
+        - Bearer: []
       tags:
         - User Module
       parameters:
@@ -181,8 +187,32 @@ paths:
           description: User Accounts retrieved successully
           schema:
               $ref: '#/definitions/Transactions'
-        '400':
+        '404':
           description: Transactions not founded
+        '500':
+          description: Internal Server Error
+  /user/accounts/{id}/transactions/{transactionId}:
+    get:
+      security:
+        - Bearer: []
+      tags:
+        - User Module
+      parameters:
+        - in: path
+          name: id
+          type: integer
+          required: true
+        - in: path
+          name: transactionId
+          type: integer
+          required: true
+      responses:
+        '200':
+          description: User Accounts retrieved successully
+          schema:
+              $ref: '#/definitions/Transaction'
+        '404':
+          description: Transaction not founded
         '500':
           description: Internal Server Error
 securityDefinitions:
@@ -248,7 +278,7 @@ definitions:
         type: string
       notes:
         type: string
-  Transactions:
+  Transaction:
     type: object
     properties:
       transactionId:
@@ -265,6 +295,10 @@ definitions:
         type: string
       amount:
         type: integer
+  Transactions:
+    type: array
+    items:
+      $ref: '#/definitions/Transaction'
   UserAccountsResponse:
     type: object
     properties:
@@ -285,5 +319,4 @@ definitions:
                 type: string
               balance: 
                 type: number
-
           
