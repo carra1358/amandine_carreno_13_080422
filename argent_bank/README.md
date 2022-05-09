@@ -10,7 +10,6 @@
 
 ![React](https://shields.io/badge/madewith-reactRouter-blue)
 
-![Rechart](https://shields.io/badge/madewith-recharts-purple)
 
 ## Cursus OpenClassrooms: Project 13
 
