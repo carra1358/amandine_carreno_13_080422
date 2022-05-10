@@ -134,49 +134,17 @@ paths:
           schema:
             $ref: '#/definitions/UserAccountsResponse'
         '400':
-          description: Accounts Transactions not founded
+          description: User unauthorize
         '500':
           description: Internal Server Error
   /user/accounts/{id}/transactions:
-    put:
-      security:
-        - Bearer: []
-      tags:
-        - User Module
-      summary: User Accounts API
-      description: API for updating a user Transactions
-      parameters:
-        - in: header
-          name: Authorization
-          description: Attach Bearer JWT token
-          required: true
-          type: string
-        - in: path
-          name: id
-          type: integer
-          required: true
-        - in: body
-          name: body
-          description: Update user Accounts Transactions attributes
-          required: true
-          schema:
-            $ref: '#/definitions/UserTransaction'
-      produces:
-        - application/json
-      responses:
-        '200':
-          description: User Accounts retrieved successully
-          schema:
-              $ref: '#/definitions/UserTransaction'
-        '400':
-          description: Transactions not founded
-        '500':
-          description: Internal Server Error
     get:
       security:
         - Bearer: []
       tags:
         - User Module
+      summary: API to Get a user's Transactions by account Id
+      description: Get transactions by user's account Id
       parameters:
         - in: path
           name: id
@@ -187,6 +155,8 @@ paths:
           description: User Accounts retrieved successully
           schema:
               $ref: '#/definitions/Transactions'
+        '400':
+          description: User unauthorize
         '404':
           description: Transactions not founded
         '500':
@@ -197,6 +167,8 @@ paths:
         - Bearer: []
       tags:
         - User Module
+      summary: API to get user's single Transaction by Transaction Id
+      description: Get Transaction by account Id and Transaction Id
       parameters:
         - in: path
           name: id
@@ -211,8 +183,50 @@ paths:
           description: User Accounts retrieved successully
           schema:
               $ref: '#/definitions/Transaction'
+        '400':
+          description: User unauthorize
         '404':
           description: Transaction not founded
+        '500':
+          description: Internal Server Error
+    put:
+      security:
+        - Bearer: []
+      tags:
+        - User Module
+      summary: API for updating a user Transaction
+      description: Allows user to modify category and add notes in a transaction
+      parameters:
+        - in: header
+          name: Authorization
+          description: Attach Bearer JWT token
+          required: true
+          type: string
+        - in: path
+          name: id
+          type: integer
+          required: true
+        - in: path
+          name: transactionId
+          type: integer
+          required: true
+        - in: body
+          name: body
+          description: Update user Accounts Transactions attributes
+          required: true
+          schema:
+            $ref: '#/definitions/UserTransaction'
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: User Accounts retrieved successully
+          schema:
+              $ref: '#/definitions/Transaction'
+        '400':
+          description: Invalid Fields
+        '404':
+          description: Transactions not founded
         '500':
           description: Internal Server Error
 securityDefinitions:
@@ -319,4 +333,3 @@ definitions:
                 type: string
               balance: 
                 type: number
-          
