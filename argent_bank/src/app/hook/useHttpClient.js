@@ -33,15 +33,6 @@ const useHttpClient = () => {
         })
     }, [token, isTokenValid])
 
-    useEffect(() => {
-
-        if (token !== isTokenValid) {
-            setToken(isTokenValid)
-
-        }
-
-
-    }, [token, isTokenValid])
 
     return {
         ...api(client),
