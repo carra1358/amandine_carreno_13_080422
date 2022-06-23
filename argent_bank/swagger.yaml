@@ -286,8 +286,6 @@ definitions:
   UserTransaction:
     type: object
     properties:
-      transactionId:
-        type: string
       category:
         type: string
       notes:
